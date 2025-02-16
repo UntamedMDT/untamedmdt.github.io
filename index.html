@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untamed Sheriff's Office</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Old+Standard+TT&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Old Standard TT', serif;
+      background-color: #d2b48c; /* Wooden background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .clipboard {
+      display: flex;
+      background-color: #fff;
+      border: 15px solid #8b7355; /* Wooden clipboard border */
+      border-radius: 20px;
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+      width: 90%;
+      max-width: 1200px;
+      height: 80vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Wooden Tabs */
+    .tabs {
+      width: 200px;
+      background-color: #8b7355; /* Wooden tab background */
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-right: 5px solid #6b5a4a; /* Darker wood border */
+    }
+
+    .tabs button {
+      background-color: #a68a6b; /* Button color */
+      color: white;
+      border: none;
+      padding: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .tabs button:hover {
+      background-color: #7a634b; /* Darker hover color */
+    }
+
+    /* Report Section (Paper) */
+    .report-section {
+      flex: 1;
+      padding: 20px;
+      background-color: #EDD4B2; /* Light parchment background */
+      overflow-y: auto;
+      position: relative;
+      border-left: 2px solid #8b7355; /* Wooden divider */
+    }
+
+    /* Parchment Texture */
+    .report-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://www.transparenttextures.com/patterns/paper.png'); /* Parchment texture */
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .report-section h2 {
+      font-family: 'Cinzel', serif;
+      color: #5a4a3a; /* Dark brown for headings */
+      border-bottom: 2px solid #8b7355; /* Wooden underline */
+      padding-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-section input,
+    .report-section textarea,
+    .report-section select {
+      width: 75%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #8b7355;
+      border-radius: 5px;
+      font-family: 'Old Standard TT', serif;
+      font-size: 14px;
+      background-color: #fff;
+      color: #3e3e3e;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-section textarea {
+      resize: vertical;
+    }
+
+    .report-section button {
+      background-color: #8b7355;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .report-section button:hover {
+      background-color: #7a634b;
+    }
+
+    .report-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .report-section ul li {
+      background-color: #e0d5c6; /* Light parchment for list items */
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-section ul li button {
+      background-color: #8b7355;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    .report-section ul li button:hover {
+      background-color: #7a634b;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .total {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .total:hover {
+      color: #8b7355;
+      text-decoration: underline;
+    }
+
+    .homepage {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .homepage h1 {
+      font-family: 'Cinzel', serif;
+      color: #5a4a3a;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .homepage-sections {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .homepage-section {
+      background-color: #e0d5c6; /* Light parchment background */
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .homepage-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .homepage-section h2 {
+      font-family: 'Cinzel', serif;
+      color: #5a4a3a;
+      margin-bottom: 10px;
+    }
+
+    .homepage-section p {
+      font-family: 'Old Standard TT', serif;
+      color: #3e3e3e;
+    }
+
+    .back-button {
+      background-color: #8b7355;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #7a634b;
+    }
+  </style>
+</head>
+<body>
+  <!-- Clipboard Container -->
+  <div class="clipboard">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button onclick="showReport('homepage')">Home</button>
+      <button onclick="showReport('arrestReport')">Arrest Report</button>
+      <button onclick="showReport('witnessStatement')">Witness Statement</button>
+      <button onclick="showReport('bountyRequest')">Bounty Request</button>
+      <button onclick="showReport('storefrontReports')">Storefront Report</button>
+    </div>
+
+    <!-- Homepage -->
+    <div class="report-section homepage" id="homepage">
+      <h1>Untamed Sheriff's Office</h1>
+      <div class="homepage-sections">
+        <div class="homepage-section" onclick="showReport('arrestReport')">
+          <h2>Arrest Report</h2>
+          <p>File an arrest report for suspects.</p>
+        </div>
+        <div class="homepage-section" onclick="showReport('witnessStatement')">
+          <h2>Witness Statement</h2>
+          <p>Record witness statements.</p>
+        </div>
+        <div class="homepage-section" onclick="showReport('bountyRequest')">
+          <h2>Bounty Request</h2>
+          <p>Request a bounty for criminals.</p>
+        </div>
+        <div class="homepage-section" onclick="showReport('storefrontReports')">
+          <h2>Storefront Report</h2>
+          <p>Report illegal storefront activities.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrest Report Section -->
+    <div class="report-section hidden" id="arrestReport">
+      <button class="back-button" onclick="showReport('homepage')">Back to Homepage</button>
+      <h2>Arrest Report</h2>
+      <div id="error" class="hidden"></div>
+
+      <!-- Report Title Input -->
+      <input id="reportTitle" type="text" placeholder="Report Title" required />
+
+      <!-- Suspect Name Input -->
+      <input id="suspect" type="text" placeholder="Suspect Name" required />
+
+      <!-- Character ID Input -->
+      <input id="characterId" type="text" placeholder="Character ID" required />
+
+      <!-- Mugshot URL Input -->
+      <input id="mugshot" type="text" placeholder="Mugshot URL" required />
+
+      <!-- Job Input -->
+      <input id="job" type="text" placeholder="Job" required />
+
+      <!-- Charges Section -->
+      <h3>Charges</h3>
+      <select id="chargeSelect">
+        <option value="" disabled selected>Select a charge</option>
+        <option value="Theft">Theft</option>
+        <option value="Assault">Assault</option>
+        <option value="Murder">Murder</option>
+      </select>
+
+      <!-- Add Charge Button -->
+      <div style="margin-bottom: 15px;">
+        <button id="addCharge">Add Charge</button>
+      </div>
+
+      <!-- Selected Charges List -->
+      <h3>Selected Charges</h3>
+      <ul id="chargesList"></ul>
+
+      <!-- Reduction Section -->
+      <h3>Total Reduction</h3>
+      <select id="reductionSelect">
+        <option value="0" selected>0% Reduction</option>
+        <option value="10">10% Reduction</option>
+        <option value="25">25% Reduction</option>
+        <option value="50">50% Reduction</option>
+      </select>
+
+      <!-- Server ID Input -->
+      <input id="serverId" type="text" placeholder="Player's Server ID" required />
+
+      <!-- Total Fine and Jail Time -->
+      <p class="total" onclick="copyTotalFine()">Total Fine: $<span id="totalFine">0.00</span></p>
+      <p class="total" onclick="copyTotalJailTime()">Jail Time: <span id="totalJailTime">0.00</span> months</p>
+
+      <!-- Report Details Textarea -->
+      <textarea id="reportDetails" placeholder="Report Details" rows="4" required></textarea>
+
+      <!-- Arresting Officer Input -->
+      <input id="arrestingOfficer" type="text" placeholder="Arresting Officer" required />
+
+      <!-- Region Dropdown -->
+      <h3>Region</h3>
+      <select id="regionSelect" required>
+        <option value="" disabled selected>Select a region</option>
+        <option value="BOC/BOL">BOC/BOL</option>
+        <option value="Secretary">Secretary</option>
+        <option value="Academy Staff">Academy Staff</option>
+        <option value="Marshal">Marshal</option>
+        <option value="Lemoyne">Lemoyne</option>
+        <option value="New Hanover">New Hanover</option>
+        <option value="West Elizabeth">West Elizabeth</option>
+        <option value="New Austin">New Austin</option>
+        <option value="Academy Deputy">Academy Deputy</option>
+      </select>
+
+      <!-- Submit Button -->
+      <div style="margin-top: 15px;">
+        <button id="submitReport">Submit Report</button>
+      </div>
+    </div>
+
+    <!-- Witness Statement Section -->
+    <div class="report-section hidden" id="witnessStatement">
+      <button class="back-button" onclick="showReport('homepage')">Back to Homepage</button>
+      <h2>Witness Statement</h2>
+      <div id="errorWitness" class="hidden"></div>
+
+      <!-- Witness Information -->
+      <h3>Witness Information</h3>
+      <input id="witnessName" type="text" placeholder="Witness Name" required />
+      <input id="witnessOccupation" type="text" placeholder="Witness Occupation" required />
+      <input id="witnessContact" type="text" placeholder="Witness Contact Information" required />
+
+      <!-- Incident Details -->
+      <h3>Incident Details</h3>
+      <input id="incidentDate" type="text" placeholder="Date of Incident" required />
+      <input id="incidentTime" type="text" placeholder="Time of Incident" required />
+      <input id="incidentLocation" type="text" placeholder="Location of Incident" required />
+
+      <!-- Suspect Information -->
+      <h3>Suspect Information</h3>
+      <input id="suspectNameWitness" type="text" placeholder="Suspect Name" required />
+      <input id="suspectDescription" type="text" placeholder="Suspect Description" required />
+      <input id="suspectLastKnownLocation" type="text" placeholder="Suspect's Last Known Location" required />
+
+      <!-- Incident Description -->
+      <h3>Incident Description</h3>
+      <textarea id="incidentDescription" placeholder="Describe the incident in detail..." rows="6" required></textarea>
+
+      <!-- Additional Notes -->
+      <h3>Additional Notes</h3>
+      <textarea id="additionalNotes" placeholder="Any additional notes or observations..." rows="4"></textarea>
+
+      <!-- Officer Name -->
+      <h3>Officer Name</h3>
+      <input id="officerName" type="text" placeholder="Officer Name" required />
+
+      <!-- Submit Button -->
+      <div style="margin-top: 15px;">
+        <button id="submitWitnessStatement">Submit Witness Statement</button>
+      </div>
+    </div>
+
+    <!-- Bounty Request Section -->
+    <div class="report-section hidden" id="bountyRequest">
+      <button class="back-button" onclick="showReport('homepage')">Back to Homepage</button>
+      <h2>Bounty Request</h2>
+      <div id="errorBounty" class="hidden"></div>
+
+      <!-- Suspect Information -->
+      <h3>Suspect Information</h3>
+      <input id="suspectNameBounty" type="text" placeholder="Suspect Name" required />
+      <input id="suspectDescriptionBounty" type="text" placeholder="Suspect Description" required />
+      <input id="suspectLastKnownLocationBounty" type="text" placeholder="Suspect's Last Known Location" required />
+
+      <!-- Crime Details -->
+      <h3>Crime Details</h3>
+      <input id="crimeDate" type="text" placeholder="Date of Crime" required />
+      <input id="crimeLocation" type="text" placeholder="Location of Crime" required />
+      <textarea id="crimeDescription" placeholder="Describe the crime in detail..." rows="6" required></textarea>
+
+      <!-- Bounty Amount -->
+      <h3>Bounty Amount</h3>
+      <input id="bountyAmount" type="text" placeholder="Bounty Amount ($)" required />
+
+      <!-- Additional Notes -->
+      <h3>Additional Notes</h3>
+      <textarea id="additionalNotesBounty" placeholder="Any additional notes or observations..." rows="4"></textarea>
+
+      <!-- Requesting Officer -->
+      <h3>Requesting Officer</h3>
+      <input id="requestingOfficer" type="text" placeholder="Requesting Officer Name" required />
+
+      <!-- Submit Button -->
+      <div style="margin-top: 15px;">
+        <button id="submitBountyRequest">Submit Bounty Request</button>
+      </div>
+    </div>
+
+    <!-- Storefront Reports Section -->
+    <div class="report-section hidden" id="storefrontReports">
+      <button class="back-button" onclick="showReport('homepage')">Back to Homepage</button>
+      <h2>Storefront Report</h2>
+      <div id="errorStorefront" class="hidden"></div>
+
+      <!-- Storefront Name -->
+      <h3>Storefront Name</h3>
+      <input id="storefrontName" type="text" placeholder="Storefront Name" required />
+
+      <!-- Storefront ID -->
+      <h3>Storefront ID</h3>
+      <input id="storefrontId" type="text" placeholder="Storefront ID" required />
+
+      <!-- Location of Storefront -->
+      <h3>Location of Storefront</h3>
+      <input id="storefrontLocation" type="text" placeholder="Location of Storefront" required />
+
+      <!-- Contraband Being Sold -->
+      <h3>What contraband are they selling?</h3>
+      <textarea id="contrabandDescription" placeholder="Describe the contraband being sold..." rows="4" required></textarea>
+
+      <!-- Image of Storefront Location -->
+      <h3>Image of Storefront Location</h3>
+      <input id="storefrontImage" type="text" placeholder="Image URL of Storefront Location" required />
+
+      <!-- Evidence Section -->
+      <h3>Evidence</h3>
+      <textarea id="evidence" placeholder="Provide any additional evidence or details..." rows="4"></textarea>
+
+      <!-- Submit Button -->
+      <div style="margin-top: 15px;">
+        <button id="submitStorefrontReport">Submit Storefront Report</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to show the selected report section
+    function showReport(reportId) {
+      // Hide all reports
+      document.querySelectorAll('.report-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      // Show the selected report
+      document.getElementById(reportId).classList.remove('hidden');
+    }
+
+    // Initially show the homepage
+    showReport('homepage');
+
+    // Add Charge Functionality for Arrest Report
+    document.getElementById('addCharge').addEventListener('click', function () {
+      const chargeSelect = document.getElementById('chargeSelect');
+      const chargesList = document.getElementById('chargesList');
+
+      if (chargeSelect.value) {
+        const listItem = document.createElement('li');
+
+        // Add Charge Name
+        const chargeName = document.createElement('span');
+        chargeName.textContent = chargeSelect.value;
+        chargeName.style.marginRight = '10px'; // Add spacing
+
+        // Add Quantity Button
+        const quantityButton = document.createElement('button');
+        quantityButton.textContent = '1'; // Default quantity
+        quantityButton.style.marginRight = '10px';
+        quantityButton.addEventListener('click', function () {
+          const currentQuantity = parseInt(quantityButton.textContent);
+          quantityButton.textContent = currentQuantity + 1; // Increase quantity
+          updateTotals(); // Update totals when quantity changes
+        });
+
+        // Add Remove Button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', function () {
+          chargesList.removeChild(listItem);
+          updateTotals(); // Update totals when a charge is removed
+        });
+
+        // Append elements to the list item
+        listItem.appendChild(chargeName);
+        listItem.appendChild(quantityButton);
+        listItem.appendChild(removeButton);
+
+        // Append the list item to the charges list
+        chargesList.appendChild(listItem);
+
+        // Reset dropdown
+        chargeSelect.value = '';
+
+        // Update totals
+        updateTotals();
+      }
+    });
+
+    // Update totals when reduction is changed
+    document.getElementById('reductionSelect').addEventListener('change', updateTotals);
+
+    // Function to update totals
+    function updateTotals() {
+      const charges = document.querySelectorAll('#chargesList li');
+      const reduction = parseFloat(document.getElementById('reductionSelect').value) / 100;
+      let totalFine = 0;
+      let totalJailTime = 0;
+
+      charges.forEach(charge => {
+        const chargeName = charge.querySelector('span').textContent; // Extract charge name
+        const quantity = parseInt(charge.querySelector('button').textContent); // Get quantity
+
+        switch (chargeName) {
+          case 'Theft':
+            totalFine += 100 * quantity;
+            totalJailTime += 6 * quantity;
+            break;
+          case 'Assault':
+            totalFine += 200 * quantity;
+            totalJailTime += 12 * quantity;
+            break;
+          case 'Murder':
+            totalFine += 500 * quantity;
+            totalJailTime += 24 * quantity;
+            break;
+        }
+      });
+
+      // Apply reduction only to the fine
+      totalFine *= (1 - reduction);
+
+      // Update the displayed totals
+      document.getElementById('totalFine').textContent = totalFine.toFixed(2);
+      document.getElementById('totalJailTime').textContent = totalJailTime.toFixed(2);
+    }
+
+    // Function to copy total fine to clipboard
+    function copyTotalFine() {
+      const totalFine = document.getElementById('totalFine').textContent;
+      const serverId = document.getElementById('serverId').value;
+
+      if (!serverId) {
+        alert('Please enter the Player\'s Server ID.');
+        return;
+      }
+
+      const textToCopy = `/bill ${totalFine} ${serverId}`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('Copied to clipboard: ' + textToCopy);
+      });
+    }
+
+    // Function to copy total jail time to clipboard
+    function copyTotalJailTime() {
+      const totalJailTime = document.getElementById('totalJailTime').textContent;
+      const serverId = document.getElementById('serverId').value;
+
+      if (!serverId) {
+        alert('Please enter the Player\'s Server ID.');
+        return;
+      }
+
+      const textToCopy = `/jail ${serverId} ${totalJailTime}`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('Copied to clipboard: ' + textToCopy);
+      });
+    }
+
+    // Function to send data to Discord webhook
+    function sendToDiscordWebhook(webhookUrl, data) {
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => {
+          if (!response.ok) {
+            console.error('Failed to send data to Discord webhook');
+          }
+        })
+        .catch(error => {
+          console.error('Error sending data to Discord webhook:', error);
+        });
+    }
+
+    // Arrest Report Submission
+    document.getElementById('submitReport').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (validateForm('arrestReport')) {
+        const charges = Array.from(document.querySelectorAll('#chargesList li')).map(li => {
+          const chargeName = li.querySelector('span').textContent;
+          const quantity = parseInt(li.querySelector('button').textContent);
+          return `${quantity}x ${chargeName}`; // Format as "2x Theft"
+        });
+
+        const reportData = {
+          content: '**New Arrest Report Submitted**',
+          embeds: [
+            {
+              title: 'Arrest Report Details',
+              fields: [
+                { name: 'Report Title', value: document.getElementById('reportTitle').value },
+                { name: 'Suspect Name', value: document.getElementById('suspect').value },
+                { name: 'Character ID', value: document.getElementById('characterId').value },
+                { name: 'Mugshot URL', value: document.getElementById('mugshot').value },
+                { name: 'Job', value: document.getElementById('job').value },
+                { name: 'Charges', value: charges.join(', ') }, // Display charges with quantity
+                { name: 'Total Fine', value: document.getElementById('totalFine').textContent },
+                { name: 'Jail Time', value: document.getElementById('totalJailTime').textContent },
+                { name: 'Report Details', value: document.getElementById('reportDetails').value },
+                { name: 'Arresting Officer', value: document.getElementById('arrestingOfficer').value },
+                { name: 'Region', value: document.getElementById('regionSelect').value },
+              ],
+            },
+          ],
+        };
+
+        // Replace with your Discord webhook URL for Arrest Report
+        const webhookUrl = 'https://discord.com/api/webhooks/1340091788177838080/8VrhvflUGibVA9lNF_5YB_XScoq6gJcFuQ_4cRTLFd070xAsnO-yWPNl_DhKin9G29Z1';
+        sendToDiscordWebhook(webhookUrl, reportData);
+
+        alert('Arrest Report Submitted!');
+        showReport('homepage'); // Return to homepage
+      }
+    });
+
+    // Witness Statement Submission
+    document.getElementById('submitWitnessStatement').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (validateForm('witnessStatement')) {
+        const reportData = {
+          content: '**New Witness Statement Submitted**',
+          embeds: [
+            {
+              title: 'Witness Statement Details',
+              fields: [
+                { name: 'Witness Name', value: document.getElementById('witnessName').value },
+                { name: 'Witness Occupation', value: document.getElementById('witnessOccupation').value },
+                { name: 'Witness Contact', value: document.getElementById('witnessContact').value },
+                { name: 'Incident Date', value: document.getElementById('incidentDate').value },
+                { name: 'Incident Time', value: document.getElementById('incidentTime').value },
+                { name: 'Incident Location', value: document.getElementById('incidentLocation').value },
+                { name: 'Suspect Name', value: document.getElementById('suspectNameWitness').value },
+                { name: 'Suspect Description', value: document.getElementById('suspectDescription').value },
+                { name: 'Suspect Last Known Location', value: document.getElementById('suspectLastKnownLocation').value },
+                { name: 'Incident Description', value: document.getElementById('incidentDescription').value },
+                { name: 'Additional Notes', value: document.getElementById('additionalNotes').value },
+                { name: 'Officer Name', value: document.getElementById('officerName').value },
+              ],
+            },
+          ],
+        };
+
+        // Replace with your Discord webhook URL for Witness Statement
+        const webhookUrl = 'https://discord.com/api/webhooks/1340446978408189952/v54R1A3EdE_IiWJe7s450Ph0biFahg7Wr6Pyfr9NILDSPE1r3CDgm7S8dq9giH74ZS17';
+        sendToDiscordWebhook(webhookUrl, reportData);
+
+        alert('Witness Statement Submitted!');
+        showReport('homepage'); // Return to homepage
+      }
+    });
+
+    // Bounty Request Submission
+    document.getElementById('submitBountyRequest').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (validateForm('bountyRequest')) {
+        const reportData = {
+          content: '**New Bounty Request Submitted**',
+          embeds: [
+            {
+              title: 'Bounty Request Details',
+              fields: [
+                { name: 'Suspect Name', value: document.getElementById('suspectNameBounty').value },
+                { name: 'Suspect Description', value: document.getElementById('suspectDescriptionBounty').value },
+                { name: 'Suspect Last Known Location', value: document.getElementById('suspectLastKnownLocationBounty').value },
+                { name: 'Crime Date', value: document.getElementById('crimeDate').value },
+                { name: 'Crime Location', value: document.getElementById('crimeLocation').value },
+                { name: 'Crime Description', value: document.getElementById('crimeDescription').value },
+                { name: 'Bounty Amount', value: document.getElementById('bountyAmount').value },
+                { name: 'Additional Notes', value: document.getElementById('additionalNotesBounty').value },
+                { name: 'Requesting Officer', value: document.getElementById('requestingOfficer').value },
+              ],
+            },
+          ],
+        };
+
+        // Replace with your Discord webhook URL for Bounty Request
+        const webhookUrl = 'https://discord.com/api/webhooks/1340800147243925576/vju3ujhfqkRpv9cH-HyW5orp3XSeBttxZwe0QIPG6cRHgkiGusE5odPJDqp6Mb1053_F';
+        sendToDiscordWebhook(webhookUrl, reportData);
+
+        alert('Bounty Request Submitted!');
+        showReport('homepage'); // Return to homepage
+      }
+    });
+
+    // Storefront Report Submission
+    document.getElementById('submitStorefrontReport').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (validateForm('storefrontReports')) {
+        const reportData = {
+          content: '**New Storefront Report Submitted**',
+          embeds: [
+            {
+              title: 'Storefront Report Details',
+              fields: [
+                { name: 'Storefront Name', value: document.getElementById('storefrontName').value },
+                { name: 'Storefront ID', value: document.getElementById('storefrontId').value },
+                { name: 'Location of Storefront', value: document.getElementById('storefrontLocation').value },
+                { name: 'Contraband Description', value: document.getElementById('contrabandDescription').value },
+                { name: 'Image of Storefront Location', value: document.getElementById('storefrontImage').value },
+                { name: 'Evidence', value: document.getElementById('evidence').value },
+              ],
+            },
+          ],
+        };
+
+        // Replace with your Discord webhook URL for Storefront Report
+        const webhookUrl = 'https://discord.com/api/webhooks/1340800184216715377/SpeMJY2h1EUqMr4yS9WX0Civm0SmcKB_N56jrAPLw2XU2IF3rxAxp4N42XOaxsv9QSs2';
+        sendToDiscordWebhook(webhookUrl, reportData);
+
+        alert('Storefront Report Submitted!');
+        showReport('homepage'); // Return to homepage
+      }
+    });
+
+    // Function to validate form fields
+    function validateForm(formId) {
+      const form = document.getElementById(formId);
+      const inputs = form.querySelectorAll('input, textarea, select');
+      let isValid = true;
+
+      inputs.forEach(input => {
+        if (input.required && !input.value) {
+          isValid = false;
+          input.style.borderColor = 'red';
+        } else {
+          input.style.borderColor = '';
+        }
+      });
+
+      if (!isValid) {
+        alert('Please fill out all required fields.');
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>

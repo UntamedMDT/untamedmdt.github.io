@@ -296,8 +296,51 @@
       <select id="chargeSelect">
         <option value="" disabled selected>Select a charge</option>
         <option value="Theft">Theft</option>
+
+
+        <option value="Speeding">Speeding</option>
+        <option value="Disorderly Conduct">Disorderly Conduct</option>
+        <option value="Animal Cruelty">Animal Cruelty</option>
+        <option value="Tresspassing">Trespassing</option>
+        <option value="Loitering">Loitering</option>
+        <option value="Criminal Threats">Criminal Threats</option>
+        <option value="Crimes against a Local">Crimes against a Local</option>
+        <option value="-=--=-">-=--=-</option>
+        <option value="Evading Justice">Evading Justice</option>
+        <option value="Brandishing">Brandishing</option>
+        <option value="Unlawful Discharge of a Weapon">Unlawful Discharge of a Weapon</option>
+        <option value="Failure to Comply with a Lawful Order">Failure to Comply with a Lawful Order</option>
+        <option value="Concealment of Identity">Concealment of Identity</option>
         <option value="Assault">Assault</option>
-        <option value="Murder">Murder</option>
+        <option value="Obstruction of a Court Officer">Obstruction of a Court Officer</option>
+        <option value="Illegal Dueling">Illegal Dueling</option>
+        <option value="Corruption of a Court Officer">Corruption of a Court Officer</option>
+        <option value="Assisting a Fugitive from Justice">Assisting a Fugitive from Justice</option>
+        <option value="-=--=-">-=--=-</option>
+        <option value="Impersonating a Court Officer">Impersonating a Court Officer</option>
+        <option value="Kidnapping">Kidnapping</option>
+        <option value="Arson">Arson</option>
+        <option value="Use of a Marksmen in Major Crimes">Use of a Marksmen in Major Crimes</option>
+        <option value="Attempted Robbery">Attempted Robbery</option>
+        <option value="Theft">Theft</option>
+        <option value="Robbery of a Train">Robbery of a Train</option>
+        <option value="Robbery T1">Robbery T1</option>
+        <option value="Robbery T1 (Peaceful Surrender)">Robbery T1 (Peaceful Surrender)</option>
+        <option value="Robbery T2">Robbery T2</option>
+        <option value="Robbery T2 (Peaceful Surrender)">Robbery T2 (Peaceful Surrender)</option>
+        <option value="Robbery T3">Robbery T3</option>
+        <option value="Robbery T3 (Peaceful Surrender)">Robbery T3 (Peaceful Surrender)</option>
+        <option value="Attempted Murder">Attempted Murder</option>
+	<option value="Murder">Murder</option>
+        <option value="Attempted Murder of a Lawman">Attempted Murder of a Lawman</option>
+        <option value="Murder of a Lawman">Murder of a Lawman</option>
+        <option value="Outlaw Ordinance Act">Outlaw Ordinance Act</option>
+        <option value="Possession of Dynamite">Possession of Dynamite</option>
+        <option value="-=--=-">-=--=-</option>
+        <option value="Contraband Class A">Contrband Class A</option>
+        <option value="Contraband Class B">Contrband Class B</option>
+        <option value="Contraband Class C">Contrband Class C</option>
+        <option value="Contraband Class D">Contrband Class D</option>
       </select>
 
       <!-- Add Charge Button -->
@@ -545,16 +588,164 @@
 
         switch (chargeName) {
           case 'Theft':
-            totalFine += 100 * quantity;
-            totalJailTime += 6 * quantity;
+            totalFine += 500 * quantity;
+            totalJailTime += 20 * quantity;
             break;
           case 'Assault':
-            totalFine += 200 * quantity;
-            totalJailTime += 12 * quantity;
+            totalFine += 400 * quantity;
+            totalJailTime += 10 * quantity;
             break;
           case 'Murder':
+            totalFine += 1300 * quantity;
+            totalJailTime += 30 * quantity;
+            break;
+          case 'Speeding':
+            totalFine += 150 * quantity;
+            totalJailTime += 5 * quantity;
+            break;
+          case 'Disorderly Conduct':
+            totalFine += 115 * quantity;
+            totalJailTime += 15 * quantity;
+            break;
+          case 'Animal Cruelty':
+            totalFine += 200 * quantity;
+            totalJailTime += 5 * quantity;
+            break;
+          case 'Trespassing':
+            totalFine += 200 * quantity;
+            totalJailTime += 5 * quantity;
+            break;
+          case 'Loitering':
+            totalFine += 250 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Criminal Threats':
+            totalFine += 250 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Crimes Against a Local':
+            totalFine += 250 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Evading Justice':
+            totalFine += 300 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Brandishing':
+            totalFine += 300 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Unlawful Discharge of a Weapon':
+            totalFine += 300 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Failure to Comply with a Lawful Order':
+            totalFine += 350 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Concealment of Identity':
+            totalFine += 400 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Obstruction of a Court Officer':
+            totalFine += 400 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Illegal Dueling':
+            totalFine += 450 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Corruption of a Court Officer':
+            totalFine += 450 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Assisting a Fugitive from Justice':
+            totalFine += 450 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Impersonating a Court Officer':
             totalFine += 500 * quantity;
-            totalJailTime += 24 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Kidnapping':
+            totalFine += 500 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Arson':
+            totalFine += 600 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Use of a Marksman in Major Crimes':
+            totalFine += 700 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Attempted Robbery':
+            totalFine += 800 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Robbery of a Train':
+            totalFine += 1000 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Robbery T1':
+            totalFine += 1500 * quantity;
+            totalJailTime += 45 * quantity;
+            break;
+          case 'Robbery T1 (Peaceful Surrender)':
+            totalFine += 1200 * quantity;
+            totalJailTime += 35 * quantity;
+            break;
+          case 'Robbery T2':
+            totalFine += 1100 * quantity;
+            totalJailTime += 40 * quantity;
+            break;
+          case 'Robbery T2 (Peaceful Surrender)':
+            totalFine += 900 * quantity;
+            totalJailTime += 30 * quantity;
+            break;
+          case 'Robbery T3':
+            totalFine += 700 * quantity;
+            totalJailTime += 30 * quantity;
+            break;
+          case 'Robbery T3 (Peaceful Surrender)':
+            totalFine += 500 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Attempted Murder':
+            totalFine += 1000 * quantity;
+            totalJailTime += 15 * quantity;
+            break;
+          case 'Attempted Murder of a Lawman':
+            totalFine += 1250 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Murder of a Lawman':
+            totalFine += 1500 * quantity;
+            totalJailTime += 30 * quantity;
+            break;
+          case 'Outlaw Ordinance Act':
+            totalFine += 5000 * quantity;
+            totalJailTime += 20 * quantity;
+            break;
+          case 'Possession of Dynamite':
+            totalFine += 1500 * quantity;
+            totalJailTime += 30 * quantity;
+            break;
+          case 'Class A Contraband':
+            totalFine += 1000 * quantity;
+            totalJailTime += 10 * quantity;
+            break;
+          case 'Class B Contraband':
+            totalFine += 200 * quantity;
+            totalJailTime += 0 * quantity;
+            break;
+          case 'Class C Contraband':
+            totalFine += 100 * quantity;
+            totalJailTime += 0 * quantity;
+            break;
+          case 'Class D Contraband':
+            totalFine += 50 * quantity;
+            totalJailTime += 0 * quantity;
             break;
         }
       });
@@ -637,15 +828,17 @@
                 { name: 'Report Title', value: document.getElementById('reportTitle').value },
                 { name: 'Suspect Name', value: document.getElementById('suspect').value },
                 { name: 'Character ID', value: document.getElementById('characterId').value },
-                { name: 'Mugshot URL', value: document.getElementById('mugshot').value },
                 { name: 'Job', value: document.getElementById('job').value },
                 { name: 'Charges', value: charges.join(', ') }, // Display charges with quantity
                 { name: 'Total Fine', value: document.getElementById('totalFine').textContent },
+                { name: 'Reduction Given', value: document.getElementById('reductionSelect').value},
                 { name: 'Jail Time', value: document.getElementById('totalJailTime').textContent },
                 { name: 'Report Details', value: document.getElementById('reportDetails').value },
                 { name: 'Arresting Officer', value: document.getElementById('arrestingOfficer').value },
                 { name: 'Region', value: document.getElementById('regionSelect').value },
               ],
+	      image: { url: document.getElementById('mugshot').value },
+	      color: 0x8b7355,
             },
           ],
         };

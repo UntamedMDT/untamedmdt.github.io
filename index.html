@@ -295,13 +295,11 @@
       <h3>Charges</h3>
       <select id="chargeSelect">
         <option value="" disabled selected>Select a charge</option>
-        <option value="Theft">Theft</option>
-
 
         <option value="Speeding">Speeding</option>
         <option value="Disorderly Conduct">Disorderly Conduct</option>
         <option value="Animal Cruelty">Animal Cruelty</option>
-        <option value="Tresspassing">Trespassing</option>
+        <option value="Trespassing">Trespassing</option>
         <option value="Loitering">Loitering</option>
         <option value="Criminal Threats">Criminal Threats</option>
         <option value="Crimes against a Local">Crimes against a Local</option>
@@ -623,7 +621,7 @@
             totalFine += 250 * quantity;
             totalJailTime += 10 * quantity;
             break;
-          case 'Crimes Against a Local':
+          case 'Crimes against a Local':
             totalFine += 250 * quantity;
             totalJailTime += 10 * quantity;
             break;
@@ -675,7 +673,7 @@
             totalFine += 600 * quantity;
             totalJailTime += 20 * quantity;
             break;
-          case 'Use of a Marksman in Major Crimes':
+          case 'Use of a Marksmen in Major Crimes':
             totalFine += 700 * quantity;
             totalJailTime += 20 * quantity;
             break;

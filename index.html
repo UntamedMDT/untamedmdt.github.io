@@ -322,12 +322,12 @@
         <option value="Attempted Robbery">Attempted Robbery</option>
         <option value="Theft">Theft</option>
         <option value="Robbery of a Train">Robbery of a Train</option>
-        <option value="Robbery T1">Robbery T1</option>
-        <option value="Robbery T1 (Peaceful Surrender)">Robbery T1 (Peaceful Surrender)</option>
-        <option value="Robbery T2">Robbery T2</option>
-        <option value="Robbery T2 (Peaceful Surrender)">Robbery T2 (Peaceful Surrender)</option>
-        <option value="Robbery T3">Robbery T3</option>
-        <option value="Robbery T3 (Peaceful Surrender)">Robbery T3 (Peaceful Surrender)</option>
+        <option value="Robbery High Priority">Robbery High Priority</option>
+        <option value="Robbery High Priority (Peaceful Surrender)">Robbery High Priority (Peaceful Surrender)</option>
+        <option value="Robbery Medium Priority">Robbery Medium Priority</option>
+        <option value="Robbery Medium Priority (Peaceful Surrender)">Robbery Medium Priority (Peaceful Surrender)</option>
+        <option value="Robbery Low Priority">Robbery Low Priority</option>
+        <option value="Robbery Low Priority (Peaceful Surrender)">Robbery Low Priority (Peaceful Surrender)</option>
         <option value="Attempted Murder">Attempted Murder</option>
 	<option value="Murder">Murder</option>
         <option value="Attempted Murder of a Lawman">Attempted Murder of a Lawman</option>
@@ -685,27 +685,27 @@
             totalFine += 1000 * quantity;
             totalJailTime += 20 * quantity;
             break;
-          case 'Robbery T1':
+          case 'Robbery High Priority':
             totalFine += 1500 * quantity;
             totalJailTime += 45 * quantity;
             break;
-          case 'Robbery T1 (Peaceful Surrender)':
+          case 'Robbery High Priority (Peaceful Surrender)':
             totalFine += 1200 * quantity;
             totalJailTime += 35 * quantity;
             break;
-          case 'Robbery T2':
+          case 'Robbery Medium Priority':
             totalFine += 1100 * quantity;
             totalJailTime += 40 * quantity;
             break;
-          case 'Robbery T2 (Peaceful Surrender)':
+          case 'Robbery Medium Priority (Peaceful Surrender)':
             totalFine += 900 * quantity;
             totalJailTime += 30 * quantity;
             break;
-          case 'Robbery T3':
+          case 'Robbery Low Priority':
             totalFine += 700 * quantity;
             totalJailTime += 30 * quantity;
             break;
-          case 'Robbery T3 (Peaceful Surrender)':
+          case 'Robbery Low Priority (Peaceful Surrender)':
             totalFine += 500 * quantity;
             totalJailTime += 20 * quantity;
             break;
@@ -734,15 +734,15 @@
             totalJailTime += 10 * quantity;
             break;
           case 'Contraband Class B':
-            totalFine += 200 * quantity;
-            totalJailTime += 0 * quantity;
-            break;
-          case 'Contraband Class C':
             totalFine += 100 * quantity;
             totalJailTime += 0 * quantity;
             break;
-          case 'Contraband Class D':
+          case 'Contraband Class C':
             totalFine += 50 * quantity;
+            totalJailTime += 0 * quantity;
+            break;
+          case 'Contraband Class D':
+            totalFine += 25 * quantity;
             totalJailTime += 0 * quantity;
             break;
         }

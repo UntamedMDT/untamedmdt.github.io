@@ -366,7 +366,7 @@
       <p class="total" onclick="copyTotalJailTime()">Jail Time: <span id="totalJailTime">0.00</span> months</p>
 
       <!-- Report Details Textarea -->
-      <textarea id="reportDetails" placeholder="Report Details" rows="4" required></textarea>
+      <textarea id="reportDetails" placeholder="Report Details & Contraband Seized" rows="4" required></textarea>
 
       <!-- Arresting Officer Input -->
       <input id="arrestingOfficer" type="text" placeholder="Arresting Officer" required />
@@ -449,7 +449,7 @@
       <!-- Crime Details -->
       <h3>Crime Details</h3>
       <input id="crimeDate" type="text" placeholder="Date of Crime" required />
-      <input id="crimeLocation" type="text" placeholder="Location of Crime" required />
+      <input id="criminalCharge" type="text" placeholder="Criminal Charge(s)" required />
       <textarea id="crimeDescription" placeholder="Describe the crime in detail..." rows="6" required></textarea>
 
       <!-- Bounty Amount -->
@@ -900,7 +900,7 @@
                 { name: 'Suspect Description', value: document.getElementById('suspectDescriptionBounty').value },
                 { name: 'Suspect Last Known Location', value: document.getElementById('suspectLastKnownLocationBounty').value },
                 { name: 'Crime Date', value: document.getElementById('crimeDate').value },
-                { name: 'Crime Location', value: document.getElementById('crimeLocation').value },
+                { name: 'Criminal Charge', value: document.getElementById('criminalCharge').value },
                 { name: 'Crime Description', value: document.getElementById('crimeDescription').value },
                 { name: 'Bounty Amount', value: document.getElementById('bountyAmount').value },
                 { name: 'Additional Notes', value: document.getElementById('additionalNotesBounty').value },
